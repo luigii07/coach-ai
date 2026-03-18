@@ -43,4 +43,8 @@ export interface WorkoutPlansRepository {
   findById(
     workoutPlanId: string
   ): Promise<WorkoutPlanWithDaysAndExercises | null>
+  findManyByUserId(
+    userId: string,
+    isActive?: boolean
+  ): Promise<WorkoutPlanWithDaysAndExercises[]>
 }

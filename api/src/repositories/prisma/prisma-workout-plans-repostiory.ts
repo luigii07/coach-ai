@@ -2,7 +2,6 @@ import { prisma } from '@/lib/prisma'
 
 import {
   WorkoutPlansRepository,
-  WorkoutPlanWithDaysAndExercises,
   WorkoutPlanWithDaysAndExercisesCreateInput,
 } from '../workout-plans-repostiory'
 
@@ -53,9 +52,7 @@ export class PrismaWorkoutPlansRepository implements WorkoutPlansRepository {
     return workoutPlan
   }
 
-  async findById(
-    workoutPlanId: string
-  ): Promise<WorkoutPlanWithDaysAndExercises | null> {
+  async findById(workoutPlanId: string) {
     const workoutPlan = await prisma.workoutPlan.findUnique({
       where: {
         id: workoutPlanId,
@@ -70,5 +67,23 @@ export class PrismaWorkoutPlansRepository implements WorkoutPlansRepository {
     })
 
     return workoutPlan
+  }
+
+  async findManyByUserId(userId: string, isActive?: boolean) {
+    const workoutPlans = await prisma.workoutPlan.findMany({
+      where: {
+        userId,
+        isActive,
+      },
+      include: {
+        workoutDays: {
+          include: {
+            exercises: true,
+          },
+        },
+      },
+    })
+
+    return workoutPlans
   }
 }
