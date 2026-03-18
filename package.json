@@ -1,0 +1,12 @@
+{
+  "name": "fit-ai",
+  "version": "1.0.0",
+  "description": "Full-stack workout platform with intelligent chatbot for generating personalized training plans and tracking progress.",
+  "private": true,
+  "workspaces": [
+    "api",
+    "web"
+  ],
+  "author": "Luigi Oliveira",
+  "packageManager": "pnpm@10.22.0"
+}
