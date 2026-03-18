@@ -10,6 +10,7 @@ import {
 } from 'fastify-type-provider-zod'
 
 import { env } from './env'
+import { errorHandler } from './http/error-handler'
 import { authRoutes } from './http/routes/auth/auth'
 import { createWorkoutPlan } from './http/routes/workout-plan/create-workout-plan'
 
@@ -17,6 +18,8 @@ export const app = fastify().withTypeProvider<ZodTypeProvider>()
 
 app.setValidatorCompiler(validatorCompiler)
 app.setSerializerCompiler(serializerCompiler)
+
+app.setErrorHandler(errorHandler)
 
 app.register(fastifyCors, {
   origin: [env.CLIENT_ORIGIN_URL],
