@@ -9,6 +9,7 @@ export class PrismaWorkoutPlansRepository implements WorkoutPlansRepository {
   async createAsAcitive(data: WorkoutPlanWithDaysAndExercisesCreateInput) {
     const workoutPlanActive = await prisma.workoutPlan.findFirst({
       where: {
+        userId: data.userId,
         isActive: true,
       },
     })
@@ -16,7 +17,10 @@ export class PrismaWorkoutPlansRepository implements WorkoutPlansRepository {
     const { workoutPlan } = await prisma.$transaction(async (tx) => {
       if (workoutPlanActive) {
         await tx.workoutPlan.update({
-          where: { id: workoutPlanActive.id },
+          where: {
+            id: workoutPlanActive.id,
+            userId: data.userId,
+          },
           data: { isActive: false },
         })
       }
