@@ -13,6 +13,7 @@ import { env } from './env'
 import { errorHandler } from './http/error-handler'
 import { authRoutes } from './http/routes/auth/auth'
 import { createWorkoutPlan } from './http/routes/workout-plan/create-workout-plan'
+import { getWorkoutPlan } from './http/routes/workout-plan/get-workout-plan'
 
 export const app = fastify().withTypeProvider<ZodTypeProvider>()
 
@@ -78,3 +79,4 @@ app.get(
 app.register(authRoutes)
 
 app.register(createWorkoutPlan, { prefix: 'workout-plans' })
+app.register(getWorkoutPlan, { prefix: 'workout-plans' })

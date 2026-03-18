@@ -48,3 +48,7 @@ export const workoutPlanResponseSchema = z.object({
     ),
   }),
 })
+
+export const getWorkoutPlanParamsSchema = z.object({
+  workoutPlanId: z.uuid(),
+})

@@ -3,10 +3,11 @@ import { prisma } from '@/lib/prisma'
 import {
   WorkoutPlansRepository,
   WorkoutPlanWithDaysAndExercises,
+  WorkoutPlanWithDaysAndExercisesCreateInput,
 } from '../workout-plans-repostiory'
 
 export class PrismaWorkoutPlansRepository implements WorkoutPlansRepository {
-  async createAsAcitive(data: WorkoutPlanWithDaysAndExercises) {
+  async createAsAcitive(data: WorkoutPlanWithDaysAndExercisesCreateInput) {
     const workoutPlanActive = await prisma.workoutPlan.findFirst({
       where: {
         isActive: true,
@@ -47,6 +48,25 @@ export class PrismaWorkoutPlansRepository implements WorkoutPlansRepository {
       })
 
       return { workoutPlan }
+    })
+
+    return workoutPlan
+  }
+
+  async findById(
+    workoutPlanId: string
+  ): Promise<WorkoutPlanWithDaysAndExercises | null> {
+    const workoutPlan = await prisma.workoutPlan.findUnique({
+      where: {
+        id: workoutPlanId,
+      },
+      include: {
+        workoutDays: {
+          include: {
+            exercises: true,
+          },
+        },
+      },
     })
 
     return workoutPlan

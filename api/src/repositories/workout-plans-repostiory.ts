@@ -40,4 +40,7 @@ export interface WorkoutPlansRepository {
   createAsAcitive(
     data: WorkoutPlanWithDaysAndExercisesCreateInput
   ): Promise<WorkoutPlanWithDaysAndExercises>
+  findById(
+    workoutPlanId: string
+  ): Promise<WorkoutPlanWithDaysAndExercises | null>
 }
