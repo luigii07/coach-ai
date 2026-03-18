@@ -11,6 +11,7 @@ import {
 
 import { env } from './env'
 import { authRoutes } from './http/routes/auth/auth'
+import { createWorkoutPlan } from './http/routes/workout-plan/create-workout-plan'
 
 export const app = fastify().withTypeProvider<ZodTypeProvider>()
 
@@ -72,3 +73,5 @@ app.get(
 )
 
 app.register(authRoutes)
+
+app.register(createWorkoutPlan, { prefix: 'workout-plans' })
