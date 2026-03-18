@@ -124,7 +124,7 @@ model WorkoutExercise {
   createdAt         DateTime   @default(now()) @db.Timestamptz
   updatedAt         DateTime   @updatedAt @db.Timestamptz
   workoutDayId      String
-  workoutDay        WorkoutDay @relation(fields: [workoutDayId], references: [id])
+  workoutDay        WorkoutDay @relation(fields: [workoutDayId], references: [id], onDelete: Cascade)
 
   @@map("workout_exercise")
 }
