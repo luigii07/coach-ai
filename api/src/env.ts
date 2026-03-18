@@ -2,6 +2,10 @@ import { z } from 'zod'
 
 const envSchema = z.object({
   PORT: z.coerce.number({ message: 'Invalid port number' }).default(3333),
+  DATABASE_URL: z.url({ message: 'Invalid database URL' }),
+  NODE_ENV: z
+    .enum(['production', 'development', 'test'])
+    .default('development'),
 })
 
 const envSafe = envSchema.safeParse(process.env)

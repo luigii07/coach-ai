@@ -1,0 +1,90 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+enum WeekDay {
+  MONDAY
+  TUESDAY
+  WEDNESDAY
+  THURSDAY
+  FRIDAY
+  SATURDAY
+  SUNDAY
+}
+
+model User {
+  id                  String        @id
+  name                String
+  email               String        @unique
+  age                 Int?
+  weightInGrams       Int?
+  bodyFatPercentage   Int?
+  heightInCentimeters Int?
+  createdAt           DateTime      @default(now())
+  updatedAt           DateTime      @updatedAt
+  workoutPlans        WorkoutPlan[]
+
+  @@map("user")
+}
+
+model WorkoutPlan {
+  id          String       @id @default(uuid())
+  name        String
+  isActive    Boolean      @default(true)
+  createdAt   DateTime     @default(now()) @db.Timestamptz
+  updatedAt   DateTime     @updatedAt @db.Timestamptz
+  userId      String
+  user        User         @relation(fields: [userId], references: [id], onDelete: Cascade)
+  workoutDays WorkoutDay[]
+
+  @@map("workout_plan")
+}
+
+model WorkoutDay {
+  id                         String            @id @default(uuid())
+  name                       String
+  isRest                     Boolean           @default(false)
+  weekDay                    WeekDay
+  coverImageUrl              String?
+  estimatedDurationInSeconds Int
+  createdAt                  DateTime          @default(now()) @db.Timestamptz
+  updatedAt                  DateTime          @updatedAt @db.Timestamptz
+  workoutPlanId              String
+  workoutPlan                WorkoutPlan       @relation(fields: [workoutPlanId], references: [id], onDelete: Cascade)
+  exercises                  WorkoutExercise[]
+  workoutSessions            WorkoutSession[]
+
+  @@map("workout_day")
+}
+
+model WorkoutExercise {
+  id                String     @id @default(uuid())
+  name              String
+  order             Int
+  sets              Int
+  reps              Int
+  restTimeInSeconds Int
+  createdAt         DateTime   @default(now()) @db.Timestamptz
+  updatedAt         DateTime   @updatedAt @db.Timestamptz
+  workoutDayId      String
+  workoutDay        WorkoutDay @relation(fields: [workoutDayId], references: [id])
+
+  @@map("workout_exercise")
+}
+
+model WorkoutSession {
+  id           String     @id @default(uuid())
+  startedAt    DateTime   @db.Timestamptz
+  completedAt  DateTime?  @db.Timestamptz
+  createdAt    DateTime   @default(now()) @db.Timestamptz
+  updatedAt    DateTime   @updatedAt @db.Timestamptz
+  workoutDayId String
+  workoutDay   WorkoutDay @relation(fields: [workoutDayId], references: [id], onDelete: Cascade)
+
+  @@map("workout_session")
+}
