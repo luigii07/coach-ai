@@ -4,7 +4,7 @@ import { verifyAuthentication } from '@/http/middlewares/verify-authentication'
 import { errorSchema } from '@/schemas/error'
 import { getUserProfileResponseSchema } from '@/schemas/user'
 import { UnauthorizedError } from '@/use-cases/erros/unauthorized-error'
-import { makeGetUserProfileUseCase } from '@/use-cases/factories/make-get-user-profile'
+import { makeGetUserProfileUseCase } from '@/use-cases/factories/make-get-user-profile-use-case'
 
 export const getProfile: FastifyPluginAsyncZod = async (app) => {
   app.register(verifyAuthentication)

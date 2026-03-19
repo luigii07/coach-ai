@@ -10,3 +10,10 @@ export const getUserProfileResponseSchema = z.object({
     heightInCentimeters: z.number().nullable(),
   }),
 })
+
+export const updateUserTrainingMetricsBodySchema = z.object({
+  weightInGrams: z.number().min(1),
+  heightInCentimeters: z.number().min(1),
+  age: z.number().min(1),
+  bodyFatPercentage: z.number().min(1).max(100),
+})

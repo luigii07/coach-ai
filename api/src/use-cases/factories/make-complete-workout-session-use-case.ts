@@ -2,7 +2,7 @@ import { PrismaWorkoutDaysRepository } from '@/repositories/prisma/prisma-workou
 import { PrismaWorkoutPlansRepository } from '@/repositories/prisma/prisma-workout-plans-repostiory'
 import { PrismaWorkoutSessionsRepository } from '@/repositories/prisma/prisma-workout-sessions-repository'
 
-import { CompleteWorkoutSessionUseCase } from '../complete-workout-session'
+import { CompleteWorkoutSessionUseCase } from '../complete-workout-session-use-case'
 
 export function makeCompleteWorkoutSessionUseCase() {
   return new CompleteWorkoutSessionUseCase(

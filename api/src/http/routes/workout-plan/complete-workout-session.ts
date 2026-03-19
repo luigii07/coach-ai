@@ -8,7 +8,7 @@ import {
   completeWorkoutSessionResponseSchema,
 } from '@/schemas/workout-session'
 import { UnauthorizedError } from '@/use-cases/erros/unauthorized-error'
-import { makeCompleteWorkoutSessionUseCase } from '@/use-cases/factories/make-complete-workout-session'
+import { makeCompleteWorkoutSessionUseCase } from '@/use-cases/factories/make-complete-workout-session-use-case'
 
 export const completeWorkoutSession: FastifyPluginAsyncZod = async (app) => {
   app.register(verifyAuthentication)

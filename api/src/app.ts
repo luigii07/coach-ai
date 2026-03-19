@@ -13,6 +13,7 @@ import { env } from './env'
 import { errorHandler } from './http/error-handler'
 import { authRoutes } from './http/routes/auth/auth'
 import { getProfile } from './http/routes/user/get-profile'
+import { updateUserTrainingMetrics } from './http/routes/user/update-user-training-metrics'
 import { completeWorkoutSession } from './http/routes/workout-plan/complete-workout-session'
 import { createWorkoutPlan } from './http/routes/workout-plan/create-workout-plan'
 import { fetchWorkoutPlans } from './http/routes/workout-plan/fetch-workout-plans'
@@ -91,3 +92,4 @@ app.register(startWorkoutSession, { prefix: 'workout-plans' })
 app.register(completeWorkoutSession, { prefix: 'workout-plans' })
 
 app.register(getProfile, { prefix: 'users' })
+app.register(updateUserTrainingMetrics, { prefix: 'users' })
