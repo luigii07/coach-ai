@@ -22,10 +22,12 @@ export class GetWorkoutPlanUseCase {
     workoutPlanId,
   }: GetWorkoutPlanUseCaseRequest): Promise<GetWorkoutPlanUseCaseResponse> {
     const workoutPlan =
-      await this.workoutPlansRespository.findById(workoutPlanId)
+      await this.workoutPlansRespository.findByIdWithDaysAndExercises(
+        workoutPlanId
+      )
 
     if (!workoutPlan || workoutPlan.userId !== userId) {
-      throw new ResourceNotFoundError()
+      throw new ResourceNotFoundError('Workout plan not found.')
     }
 
     return {

@@ -56,7 +56,7 @@ export class PrismaWorkoutPlansRepository implements WorkoutPlansRepository {
     return workoutPlan
   }
 
-  async findById(workoutPlanId: string) {
+  async findByIdWithDaysAndExercises(workoutPlanId: string) {
     const workoutPlan = await prisma.workoutPlan.findUnique({
       where: {
         id: workoutPlanId,
@@ -89,5 +89,13 @@ export class PrismaWorkoutPlansRepository implements WorkoutPlansRepository {
     })
 
     return workoutPlans
+  }
+
+  async findById(workoutPlanId: string) {
+    const workoutPlan = await prisma.workoutPlan.findUnique({
+      where: { id: workoutPlanId },
+    })
+
+    return workoutPlan
   }
 }

@@ -14,6 +14,7 @@ import { errorHandler } from './http/error-handler'
 import { authRoutes } from './http/routes/auth/auth'
 import { createWorkoutPlan } from './http/routes/workout-plan/create-workout-plan'
 import { fetchWorkoutPlans } from './http/routes/workout-plan/fetch-workout-plans'
+import { getWorkoutDay } from './http/routes/workout-plan/get-workout-day'
 import { getWorkoutPlan } from './http/routes/workout-plan/get-workout-plan'
 
 export const app = fastify().withTypeProvider<ZodTypeProvider>()
@@ -82,3 +83,4 @@ app.register(authRoutes)
 app.register(createWorkoutPlan, { prefix: 'workout-plans' })
 app.register(fetchWorkoutPlans, { prefix: 'workout-plans' })
 app.register(getWorkoutPlan, { prefix: 'workout-plans' })
+app.register(getWorkoutDay, { prefix: 'workout-plans' })

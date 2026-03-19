@@ -1,4 +1,4 @@
-import { Prisma } from '../../generated/prisma/client'
+import { Prisma, WorkoutPlan } from '../../generated/prisma/client'
 
 export type WorkoutPlanWithDaysAndExercisesCreateInput =
   Prisma.WorkoutPlanGetPayload<{
@@ -29,9 +29,7 @@ export type WorkoutPlanWithDaysAndExercisesCreateInput =
 export type WorkoutPlanWithDaysAndExercises = Prisma.WorkoutPlanGetPayload<{
   include: {
     workoutDays: {
-      include: {
-        exercises: true
-      }
+      include: { exercises: true }
     }
   }
 }>
@@ -40,11 +38,12 @@ export interface WorkoutPlansRepository {
   createAsAcitive(
     data: WorkoutPlanWithDaysAndExercisesCreateInput
   ): Promise<WorkoutPlanWithDaysAndExercises>
-  findById(
+  findByIdWithDaysAndExercises(
     workoutPlanId: string
   ): Promise<WorkoutPlanWithDaysAndExercises | null>
   findManyByUserId(
     userId: string,
     isActive?: boolean
   ): Promise<WorkoutPlanWithDaysAndExercises[]>
+  findById(workoutPlanId: string): Promise<WorkoutPlan | null>
 }
