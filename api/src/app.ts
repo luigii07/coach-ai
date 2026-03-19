@@ -12,6 +12,7 @@ import {
 import { env } from './env'
 import { errorHandler } from './http/error-handler'
 import { authRoutes } from './http/routes/auth/auth'
+import { completeWorkoutSession } from './http/routes/workout-plan/complete-workout-session'
 import { createWorkoutPlan } from './http/routes/workout-plan/create-workout-plan'
 import { fetchWorkoutPlans } from './http/routes/workout-plan/fetch-workout-plans'
 import { getWorkoutDay } from './http/routes/workout-plan/get-workout-day'
@@ -86,3 +87,4 @@ app.register(fetchWorkoutPlans, { prefix: 'workout-plans' })
 app.register(getWorkoutPlan, { prefix: 'workout-plans' })
 app.register(getWorkoutDay, { prefix: 'workout-plans' })
 app.register(startWorkoutSession, { prefix: 'workout-plans' })
+app.register(completeWorkoutSession, { prefix: 'workout-plans' })

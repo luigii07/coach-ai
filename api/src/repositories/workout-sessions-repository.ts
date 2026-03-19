@@ -6,4 +6,12 @@ export interface WorkoutSessionsRepository {
     date: Date
   ): Promise<WorkoutSession | null>
   create(workoutDayId: string): Promise<WorkoutSession>
+  findById(sessionId: string): Promise<WorkoutSession | null>
+  update({
+    sessionId,
+    completedAt,
+  }: {
+    sessionId: string
+    completedAt: Date
+  }): Promise<WorkoutSession>
 }

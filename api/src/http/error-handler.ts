@@ -2,6 +2,7 @@ import { FastifyInstance } from 'fastify'
 import { hasZodFastifySchemaValidationErrors } from 'fastify-type-provider-zod'
 
 import { ResourceNotFoundError } from '@/use-cases/erros/resource-not-found-error'
+import { SessionAlreadyCompletedError } from '@/use-cases/erros/session-already-completed-error'
 import { SessionAlreadyStartedError } from '@/use-cases/erros/session-already-started-error'
 import { UnauthorizedError } from '@/use-cases/erros/unauthorized-error'
 import { WorkoutPlanNotActiveError } from '@/use-cases/erros/workout-plan-not-active-error'
@@ -41,6 +42,13 @@ export const errorHandler: FastifyErrorHandler = (error, request, reply) => {
     return reply.status(409).send({
       message: error.message,
       code: 'SESSION_ALREADY_STARTED_ERROR',
+    })
+  }
+
+  if (error instanceof SessionAlreadyCompletedError) {
+    return reply.status(409).send({
+      message: error.message,
+      code: 'SESSION_ALREADY_COMPLETED_ERROR',
     })
   }
 
