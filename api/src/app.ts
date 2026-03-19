@@ -16,6 +16,7 @@ import { createWorkoutPlan } from './http/routes/workout-plan/create-workout-pla
 import { fetchWorkoutPlans } from './http/routes/workout-plan/fetch-workout-plans'
 import { getWorkoutDay } from './http/routes/workout-plan/get-workout-day'
 import { getWorkoutPlan } from './http/routes/workout-plan/get-workout-plan'
+import { startWorkoutSession } from './http/routes/workout-plan/start-workout-session'
 
 export const app = fastify().withTypeProvider<ZodTypeProvider>()
 
@@ -84,3 +85,4 @@ app.register(createWorkoutPlan, { prefix: 'workout-plans' })
 app.register(fetchWorkoutPlans, { prefix: 'workout-plans' })
 app.register(getWorkoutPlan, { prefix: 'workout-plans' })
 app.register(getWorkoutDay, { prefix: 'workout-plans' })
+app.register(startWorkoutSession, { prefix: 'workout-plans' })
