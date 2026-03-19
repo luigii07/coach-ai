@@ -1,4 +1,7 @@
-import { WorkoutPlansRepository } from '@/repositories/workout-plans-repostiory'
+import {
+  WorkoutPlansRepository,
+  WorkoutPlanWithDaysAndExercises,
+} from '@/repositories/workout-plans-repostiory'
 
 import { WeekDay } from '../../generated/prisma/enums'
 
@@ -22,22 +25,7 @@ interface CreateWorkoutPlanUseCaseRequest {
 }
 
 interface CreateWorkoutPlanUseCaseResponse {
-  id: string
-  name: string
-  workoutDays: Array<{
-    name: string
-    weekDay: WeekDay
-    isRest: boolean
-    estimatedDurationInSeconds: number
-    coverImageUrl?: string
-    exercises: Array<{
-      order: number
-      name: string
-      sets: number
-      reps: number
-      restTimeInSeconds: number
-    }>
-  }>
+  workoutPlan: WorkoutPlanWithDaysAndExercises
 }
 
 export class CreateWorkoutPlanUseCase {
@@ -58,15 +46,7 @@ export class CreateWorkoutPlanUseCase {
     })
 
     return {
-      id: workoutPlan.id,
-      name: workoutPlan.name,
-      workoutDays: workoutPlan.workoutDays.map((workoutDay) => ({
-        ...workoutDay,
-        coverImageUrl: workoutDay.coverImageUrl ?? undefined,
-        exercises: workoutDay.exercises.map((exercise) => ({
-          ...exercise,
-        })),
-      })),
+      workoutPlan,
     }
   }
 }

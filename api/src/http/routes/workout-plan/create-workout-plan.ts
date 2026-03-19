@@ -36,14 +36,20 @@ export const createWorkoutPlan: FastifyPluginAsyncZod = async (app) => {
 
       const createWorkoutPlanUseCase = makeCreateWorkoutPlanUseCase()
 
-      const workoutPlan = await createWorkoutPlanUseCase.execute({
+      const { workoutPlan } = await createWorkoutPlanUseCase.execute({
         name: request.body.name,
         userId: session.user.id,
         workoutDays: request.body.workoutDays,
       })
 
       return reply.status(201).send({
-        workoutPlan,
+        workoutPlan: {
+          ...workoutPlan,
+          workoutDays: workoutPlan.workoutDays.map((workoutDay) => ({
+            ...workoutDay,
+            coverImageUrl: workoutDay.coverImageUrl ?? undefined,
+          })),
+        },
       })
     }
   )
