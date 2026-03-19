@@ -5,6 +5,8 @@ export const startWorkoutSessionParamsSchema = z.object({
   workoutDayId: z.uuid(),
 })
 
+export const startWorkoutSessionBodySchema = z.object({}).optional()
+
 export const startWorkoutSessionResponseSchema = z.object({
   userWorkoutSessionId: z.uuid(),
 })

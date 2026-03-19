@@ -3,7 +3,7 @@ import { prisma } from '@/lib/prisma'
 import {
   WorkoutPlansRepository,
   WorkoutPlanWithDaysAndExercisesCreateInput,
-} from '../workout-plans-repostiory'
+} from '../workout-plans-repository'
 
 export class PrismaWorkoutPlansRepository implements WorkoutPlansRepository {
   async createAsAcitive(data: WorkoutPlanWithDaysAndExercisesCreateInput) {

@@ -1,8 +1,8 @@
 import {
   WorkoutDaysRepository,
   WorkoutDayWithExercisesAndSessions,
-} from '@/repositories/workout-days-repostiory'
-import { WorkoutPlansRepository } from '@/repositories/workout-plans-repostiory'
+} from '@/repositories/workout-days-repository'
+import { WorkoutPlansRepository } from '@/repositories/workout-plans-repository'
 
 import { ResourceNotFoundError } from './erros/resource-not-found-error'
 

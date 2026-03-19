@@ -1,9 +1,9 @@
 import { FastifyPluginAsyncZod } from 'fastify-type-provider-zod'
-import z from 'zod'
 
 import { verifyAuthentication } from '@/http/middlewares/verify-authentication'
 import { errorSchema } from '@/schemas/error'
 import {
+  startWorkoutSessionBodySchema,
   startWorkoutSessionParamsSchema,
   startWorkoutSessionResponseSchema,
 } from '@/schemas/workout-session'
@@ -20,7 +20,7 @@ export const startWorkoutSession: FastifyPluginAsyncZod = async (app) => {
         tags: ['Workout Plan'],
         summary: 'Start a workout session',
         params: startWorkoutSessionParamsSchema,
-        body: z.object({ test: z.string() }),
+        body: startWorkoutSessionBodySchema,
         response: {
           201: startWorkoutSessionResponseSchema,
           400: errorSchema,

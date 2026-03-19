@@ -1,5 +1,5 @@
-import { WorkoutDaysRepository } from '@/repositories/workout-days-repostiory'
-import { WorkoutPlansRepository } from '@/repositories/workout-plans-repostiory'
+import { WorkoutDaysRepository } from '@/repositories/workout-days-repository'
+import { WorkoutPlansRepository } from '@/repositories/workout-plans-repository'
 import { WorkoutSessionsRepository } from '@/repositories/workout-sessions-repository'
 
 import { ResourceNotFoundError } from './erros/resource-not-found-error'

@@ -1,7 +1,7 @@
 import {
   WorkoutPlansRepository,
   WorkoutPlanWithDaysAndExercises,
-} from '@/repositories/workout-plans-repostiory'
+} from '@/repositories/workout-plans-repository'
 
 interface FetchWorkoutPlansUseCaseRequest {
   userId: string

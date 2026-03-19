@@ -1,6 +1,6 @@
 import { prisma } from '@/lib/prisma'
 
-import { WorkoutDaysRepository } from '../workout-days-repostiory'
+import { WorkoutDaysRepository } from '../workout-days-repository'
 
 export class PrismaWorkoutDaysRepository implements WorkoutDaysRepository {
   async findByPlanAndDayId({

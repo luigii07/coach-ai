@@ -1,7 +1,7 @@
 import {
   WorkoutPlansRepository,
   WorkoutPlanWithDaysAndExercises,
-} from '@/repositories/workout-plans-repostiory'
+} from '@/repositories/workout-plans-repository'
 
 import { WeekDay } from '../../generated/prisma/enums'
 
