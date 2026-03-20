@@ -34,6 +34,18 @@ export type WorkoutPlanWithDaysAndExercises = Prisma.WorkoutPlanGetPayload<{
   }
 }>
 
+export type WorkoutPlanWithDaysExercisesAndSessions =
+  Prisma.WorkoutPlanGetPayload<{
+    include: {
+      workoutDays: {
+        include: {
+          exercises: true
+          workoutSessions: true
+        }
+      }
+    }
+  }>
+
 export interface WorkoutPlansRepository {
   createAsAcitive(
     data: WorkoutPlanWithDaysAndExercisesCreateInput
@@ -46,4 +58,7 @@ export interface WorkoutPlansRepository {
     isActive?: boolean
   ): Promise<WorkoutPlanWithDaysAndExercises[]>
   findById(workoutPlanId: string): Promise<WorkoutPlan | null>
+  findActiveByUserIdWithDaysExercisesAndSessions(
+    userId: string
+  ): Promise<WorkoutPlanWithDaysExercisesAndSessions | null>
 }

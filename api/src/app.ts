@@ -12,6 +12,7 @@ import {
 import { env } from './env'
 import { errorHandler } from './http/error-handler'
 import { authRoutes } from './http/routes/auth/auth'
+import { getHomeData } from './http/routes/home/get-home-data'
 import { getProfile } from './http/routes/user/get-profile'
 import { updateUserTrainingMetrics } from './http/routes/user/update-user-training-metrics'
 import { completeWorkoutSession } from './http/routes/workout-plan/complete-workout-session'
@@ -93,3 +94,4 @@ app.register(completeWorkoutSession, { prefix: 'workout-plans' })
 
 app.register(getProfile, { prefix: 'users' })
 app.register(updateUserTrainingMetrics, { prefix: 'users' })
+app.register(getHomeData, { prefix: 'home' })

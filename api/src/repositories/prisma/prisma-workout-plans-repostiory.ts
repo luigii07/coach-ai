@@ -98,4 +98,23 @@ export class PrismaWorkoutPlansRepository implements WorkoutPlansRepository {
 
     return workoutPlan
   }
+
+  async findActiveByUserIdWithDaysExercisesAndSessions(userId: string) {
+    const workoutPlan = await prisma.workoutPlan.findFirst({
+      where: {
+        userId,
+        isActive: true,
+      },
+      include: {
+        workoutDays: {
+          include: {
+            exercises: true,
+            workoutSessions: true,
+          },
+        },
+      },
+    })
+
+    return workoutPlan
+  }
 }

@@ -60,4 +60,46 @@ export class PrismaWorkoutSessionsRepository implements WorkoutSessionsRepositor
 
     return session
   }
+
+  async findManyByPlanIdStartedBetween({
+    workoutPlanId,
+    startDate,
+    endDate,
+  }: {
+    workoutPlanId: string
+    startDate: Date
+    endDate: Date
+  }) {
+    const sessions = await prisma.workoutSession.findMany({
+      where: {
+        workoutDay: {
+          workoutPlanId,
+        },
+        startedAt: {
+          gte: startDate,
+          lte: endDate,
+        },
+      },
+    })
+
+    return sessions
+  }
+
+  async findManyCompletedByPlanId(workoutPlanId: string) {
+    const sessions = await prisma.workoutSession.findMany({
+      where: {
+        workoutDay: {
+          workoutPlanId,
+        },
+        completedAt: {
+          not: null,
+        },
+      },
+      select: {
+        startedAt: true,
+      },
+    })
+
+    return sessions
+  }
 }
