@@ -16,6 +16,7 @@ export const createWorkoutPlan: FastifyPluginAsyncZod = async (app) => {
     '/',
     {
       schema: {
+        operationId: 'createWorkoutPlan',
         tags: ['Workout Plan'],
         summary: 'Create a workout plan',
         body: createWorkoutPlanBodySchema,

@@ -16,6 +16,7 @@ export const updateUserTrainingMetrics: FastifyPluginAsyncZod = async (app) => {
     '/',
     {
       schema: {
+        operationId: 'updateUserTrainingMetrics',
         tags: ['User'],
         summary: 'Update user training metrics',
         body: updateUserTrainingMetricsBodySchema,

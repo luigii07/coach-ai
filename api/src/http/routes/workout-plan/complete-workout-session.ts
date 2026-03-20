@@ -17,6 +17,7 @@ export const completeWorkoutSession: FastifyPluginAsyncZod = async (app) => {
     '/:workoutPlanId/days/:workoutDayId/sessions/:workoutSessionId',
     {
       schema: {
+        operationId: 'completeWorkoutSession',
         tags: ['Workout Plan'],
         summary: 'Complete a workout session',
         params: completeWorkoutSessionParamsSchema,

@@ -16,6 +16,7 @@ export const getHomeData: FastifyPluginAsyncZod = async (app) => {
     '/',
     {
       schema: {
+        operationId: 'getHomeData',
         tags: ['Home'],
         summary: 'Get home data',
         querystring: getHomeDataQuerySchema,

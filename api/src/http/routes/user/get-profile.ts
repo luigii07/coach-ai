@@ -13,6 +13,7 @@ export const getProfile: FastifyPluginAsyncZod = async (app) => {
     '/me',
     {
       schema: {
+        operationId: 'getUserProfile',
         tags: ['User'],
         summary: 'Get user profile',
         response: {
