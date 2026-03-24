@@ -11,6 +11,8 @@ const envSchema = z.object({
     .min(32, { message: 'Better auth secret must be at least 32 characters' }),
   API_BASE_URL: z.url({ message: 'Invalid api base URL' }),
   CLIENT_ORIGIN_URL: z.url({ message: 'Invalid client origin URL' }),
+  GOOGLE_CLIENT_ID: z.string({ message: 'Invalid Google client ID' }),
+  GOOGLE_CLIENT_SECRET: z.string({ message: 'Invalid Google client secret' }),
 })
 
 const envSafe = envSchema.safeParse(process.env)
