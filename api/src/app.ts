@@ -11,6 +11,7 @@ import {
 
 import { env } from './env'
 import { errorHandler } from './http/error-handler'
+import { aiChatBot } from './http/routes/ai/chat'
 import { authRoutes } from './http/routes/auth/auth'
 import { getHomeData } from './http/routes/home/get-home-data'
 import { getProfile } from './http/routes/user/get-profile'
@@ -98,3 +99,5 @@ app.register(getProfile, { prefix: 'users' })
 app.register(updateUserTrainingMetrics, { prefix: 'users' })
 
 app.register(getHomeData, { prefix: 'home' })
+
+app.register(aiChatBot, { prefix: 'ai' })
