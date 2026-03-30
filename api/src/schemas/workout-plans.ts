@@ -30,10 +30,11 @@ export const workoutPlanResponseSchema = z.object({
     name: z.string().trim().min(1),
     workoutDays: z.array(
       z.object({
+        id: z.uuid(),
         name: z.string().trim().min(1),
         weekDay: z.enum(WeekDay),
         isRest: z.boolean().default(false),
-        estimatedDurationInSeconds: z.number().min(1),
+        estimatedDurationInSeconds: z.number(),
         coverImageUrl: z.url().optional(),
         exercises: z.array(
           z.object({
