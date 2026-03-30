@@ -5,7 +5,7 @@ import { GetHomeData200ConsistencyByDay } from "@/lib/api/fetch-generated/index.
 const WEEKDAY_SHORT = ["D", "S", "T", "Q", "Q", "S", "S"]
 
 function getWeekDates(today: dayjs.Dayjs) {
-  const sunday = today.day() === 0 ? today : today.subtract(6, "day")
+  const sunday = today.day() === 0 ? today : today.subtract(1, "day")
 
   return Array.from({ length: 7 }, (_, i) => sunday.add(i, "day"))
 }

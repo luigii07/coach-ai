@@ -12,6 +12,7 @@ import { useForm, useWatch } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { Input } from "@/components/ui/input"
 import { ThinkingIndicator } from "./thinking-indicator"
+import { parseAsString, useQueryStates } from "nuqs"
 
 interface ChatProps {
   embedded?: boolean
@@ -19,6 +20,10 @@ interface ChatProps {
 }
 
 export function Chat({ embedded, onClose }: ChatProps) {
+  const [chatParams, setChatParams] = useQueryStates({
+    chat_initial_message: parseAsString,
+  })
+
   const form = useForm<ChatFormSchema>({
     defaultValues: {
       message: "",
@@ -55,10 +60,20 @@ export function Chat({ embedded, onClose }: ChatProps) {
   }
 
   useEffect(() => {
+    if (chatParams.chat_initial_message) {
+      form.setValue("message", chatParams.chat_initial_message)
+    }
+
+    return () => {
+      setChatParams({ chat_initial_message: "" })
+    }
+  }, [chatParams.chat_initial_message, form, setChatParams])
+
+  useEffect(() => {
     if (messagesEndRef.current) {
       messagesEndRef.current.scrollIntoView({ behavior: "smooth" })
     }
-  }, [messagesEndRef])
+  }, [messagesEndRef, status])
 
   return (
     <div

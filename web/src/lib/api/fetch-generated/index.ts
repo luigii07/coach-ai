@@ -76,11 +76,12 @@ export type CreateWorkoutPlan201WorkoutPlanWorkoutDaysItemExercisesItem = {
 }
 
 export type CreateWorkoutPlan201WorkoutPlanWorkoutDaysItem = {
+  /** @pattern ^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$ */
+  id: string
   /** @minLength 1 */
   name: string
   weekDay: CreateWorkoutPlan201WorkoutPlanWorkoutDaysItemWeekDay
   isRest: boolean
-  /** @minimum 1 */
   estimatedDurationInSeconds: number
   coverImageUrl?: string
   exercises: CreateWorkoutPlan201WorkoutPlanWorkoutDaysItemExercisesItem[]
@@ -216,11 +217,12 @@ export type GetWorkoutPlan200WorkoutPlanWorkoutDaysItemExercisesItem = {
 }
 
 export type GetWorkoutPlan200WorkoutPlanWorkoutDaysItem = {
+  /** @pattern ^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$ */
+  id: string
   /** @minLength 1 */
   name: string
   weekDay: GetWorkoutPlan200WorkoutPlanWorkoutDaysItemWeekDay
   isRest: boolean
-  /** @minimum 1 */
   estimatedDurationInSeconds: number
   coverImageUrl?: string
   exercises: GetWorkoutPlan200WorkoutPlanWorkoutDaysItemExercisesItem[]

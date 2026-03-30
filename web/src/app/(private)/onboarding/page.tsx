@@ -8,9 +8,7 @@ export default async function Page() {
 
   const { data, status } = await getHomeData({ date: today })
 
-  if (status !== 200) return
-
-  if (data.activeWorkoutPlanId) return redirect("/")
+  if (status === 200 && data.activeWorkoutPlanId) return redirect("/")
 
   return <Chat embedded />
 }
