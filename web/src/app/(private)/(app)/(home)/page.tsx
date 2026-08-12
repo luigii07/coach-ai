@@ -7,6 +7,7 @@ import { headers } from "next/headers"
 import { ConsistencyTracker } from "@/app/(private)/(app)/(home)/_components/consistency-tracker"
 import Link from "next/link"
 import { WorkoutDayCard } from "@/app/_components/workout-day-card"
+import { redirect } from "next/navigation"
 
 export default async function Page() {
   const session = await authClient.getSession({
@@ -21,8 +22,12 @@ export default async function Page() {
     date: today.format("YYYY-MM-DD"),
   })
 
+  if (status === 404) {
+    redirect("/onboarding")
+  }
+
   if (status !== 200) {
-    throw new Error("Failed to fetch home data")
+    throw Error("Failed to fetch home data")
   }
 
   const { workoutStreak, consistencyByDay, todayWorkoutDay } = data
@@ -100,9 +105,12 @@ export default async function Page() {
             <h2 className="font-heading text-lg font-semibold text-foreground">
               Treino de Hoje
             </h2>
-            <button className="font-heading text-xs text-primary">
-              Ver treinos
-            </button>
+
+            <Link href={`/workout-plans/${todayWorkoutDay.workoutPlanId}`}>
+              <button className="font-heading text-xs text-primary">
+                Ver treinos
+              </button>
+            </Link>
           </div>
 
           <Link
